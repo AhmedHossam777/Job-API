@@ -3,15 +3,17 @@ require('express-async-errors');
 
 const notFound = require('./middlewares/not-found');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
+const jobsRouter = require('./routes/job');
+const authRouter = require('./routes/auth');
 
 const express = require('express');
 
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('hello from job API');
-});
+app.use('/api/v1/jobs', jobsRouter);
+app.use('/api/v1/auth', authRouter);
+
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
