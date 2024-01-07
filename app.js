@@ -8,6 +8,9 @@ const authRouter = require('./routes/auth');
 
 const express = require('express');
 
+// connectDB
+const connectDB = require('./db/connect');
+
 const app = express();
 app.use(express.json());
 
@@ -22,6 +25,7 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
+    await connectDB(process.env.MONGO_URI);
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
