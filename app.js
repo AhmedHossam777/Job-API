@@ -17,7 +17,6 @@ app.use(express.json());
 app.use('/api/v1/jobs', jobsRouter);
 app.use('/api/v1/auth', authRouter);
 
-
 app.use(notFound);
 app.use(errorHandlerMiddleware);
 
