@@ -35,19 +35,26 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
+
+
 UserSchema.methods.generateToken = function () {
   this.token = jwt.sign(
     {
       // payload
       id: this._id,
-      name: this.name
+      name: this.name,
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '30d',
+      expiresIn: process.env.JWT_EXPIRE,
     }
   );
+  return this.token;
 };
+
+UserSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+}
 
 const User = mongoose.model('User', UserSchema);
 
