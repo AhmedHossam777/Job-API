@@ -8,7 +8,6 @@ const authRouter = require('./routes/auth');
 
 const express = require('express');
 
-// connectDB
 const connectDB = require('./db/connect');
 
 const app = express();

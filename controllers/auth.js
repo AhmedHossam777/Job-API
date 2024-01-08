@@ -1,12 +1,16 @@
 const User = require('../models/User');
+const { StatusCodes } = require('http-status-codes');
+const apiError = require('../errors/apiError');
 
 const register = async (req, res, next) => {
-  console.log(req.body);
   const user = await User.create(req.body);
-  
-  res.status(201).json({
+
+  const token = user.generateToken();
+
+  res.status(StatusCodes.CREATED).json({
     status: 'success',
     user,
+    token,
   });
 };
 
