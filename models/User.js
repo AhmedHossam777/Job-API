@@ -24,10 +24,6 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  token: {
-    type: String,
-    select: false,
-  },
 });
 
 UserSchema.pre('save', async function (next) {
@@ -38,7 +34,7 @@ UserSchema.pre('save', async function (next) {
 
 
 UserSchema.methods.generateToken = function () {
-  this.token = jwt.sign(
+  const token = jwt.sign(
     {
       // payload
       id: this._id,
@@ -49,7 +45,7 @@ UserSchema.methods.generateToken = function () {
       expiresIn: process.env.JWT_EXPIRE,
     }
   );
-  return this.token;
+  return token;
 };
 
 UserSchema.methods.comparePassword = async function (password) {

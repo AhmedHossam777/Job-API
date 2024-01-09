@@ -5,6 +5,7 @@ const notFound = require('./middlewares/not-found');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
 const jobsRouter = require('./routes/job');
 const authRouter = require('./routes/auth');
+const authMiddleware = require('./middlewares/auth');
 
 const express = require('express');
 
@@ -13,7 +14,7 @@ const connectDB = require('./db/connect');
 const app = express();
 app.use(express.json());
 
-app.use('/api/v1/jobs', jobsRouter);
+app.use('/api/v1/jobs', authMiddleware, jobsRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use(notFound);
