@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Please provide a email'],
-    unique: true,
+    unique: [true, 'Email already exists'],
     match: [
       /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
       'Please provide a valid email',
@@ -31,8 +31,6 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-
-
 UserSchema.methods.generateToken = function () {
   const token = jwt.sign(
     {
@@ -50,7 +48,7 @@ UserSchema.methods.generateToken = function () {
 
 UserSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
-}
+};
 
 const User = mongoose.model('User', UserSchema);
 
