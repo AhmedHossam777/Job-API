@@ -14,7 +14,7 @@ const connectDB = require('./db/connect');
 const app = express();
 app.use(express.json());
 
-app.use('/api/v1/jobs', authMiddleware, jobsRouter);
+app.use('/api/v1/jobs', authMiddleware.authMiddleware, authMiddleware.protect, jobsRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use(notFound);

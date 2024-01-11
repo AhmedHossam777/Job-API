@@ -2,6 +2,7 @@ const User = require('../models/User');
 const ApiError = require('../errors/apiError');
 const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
+const Job = require('../models/Job');
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -23,4 +24,19 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+const protect = async(req,res,next)=>{
+  const userID = req.user.id;
+  
+  const job = await Job.findOne({createdBy:userID});
+  if(!job){
+    return next(ApiError.create('unauthorized', StatusCodes.UNAUTHORIZED));
+  }
+  next();
+}
+
+
+
+module.exports = {authMiddleware,protect};
+
+
+
