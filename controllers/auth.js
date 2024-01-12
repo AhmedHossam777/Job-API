@@ -3,13 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const apiError = require('../errors/apiError');
 
 const register = async (req, res, next) => {
-  const user = User.findOne({ email: req.body.email });
-  if (user) {
-    return next(
-      apiError.create('User already exists', StatusCodes.BAD_REQUEST)
-    );
-  }
-
+  
   const newUser = await User.create(req.body);
 
   const token = newUser.generateToken();

@@ -1,6 +1,6 @@
 require('dotenv').config();
-require('express-async-errors');
 
+require('express-async-errors');
 const notFound = require('./middlewares/not-found');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
 const jobsRouter = require('./routes/job');
@@ -17,8 +17,8 @@ app.use(express.json());
 app.use('/api/v1/jobs', authMiddleware.authMiddleware, authMiddleware.protect, jobsRouter);
 app.use('/api/v1/auth', authRouter);
 
-app.use(notFound);
 app.use(errorHandlerMiddleware);
+app.use(notFound);
 
 const port = process.env.PORT || 3000;
 
