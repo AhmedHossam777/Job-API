@@ -37,6 +37,7 @@ A RESTful API for building a full-featured job-website. This API provides the ba
 - Express.js
 - MongoDB
 - Mongoose
+- validator
 - JWT
 - bcrypt
 - Express-Async-Handler
