@@ -31,6 +31,14 @@ app.use(helmet());  // set security headers
 app.use(xss()); // clean user input from malicious html code
 app.use(cors()); // enable cors for all requests
 
+// Allow requests from your front-end
+app.use(
+  cors({
+    origin: 'http://127.0.0.1:8080', // replace with your front-end's URL
+  })
+);
+
+
 app.use('/api/v1/jobs', authMiddleware.authMiddleware, authMiddleware.protect, jobsRouter);
 app.use('/api/v1/auth', authRouter);
 
