@@ -16,7 +16,6 @@
 - [Description](#description)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Deployment](#deployment)
 - [Installation](#installation)
 
 ## Description
@@ -46,16 +45,6 @@ A RESTful API for building a full-featured job-website. This API provides the ba
 - helmet
 - xss-clean
 
-## Deployment
-
-The API is deployed with git into Cyclic. Below are the steps taken:
-
-```
-git init
-git add -A
-git commit -m "Commit message"
-```
-
 ## Installation
 
 You can fork the app or you can git-clone the app into your local machine. Once done that, please install all the dependencies by running
@@ -64,7 +53,4 @@ You can fork the app or you can git-clone the app into your local machine. Once 
 $ npm install
 set your env variables
 $ npm run start
-
-
-
 ```
