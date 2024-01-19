@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/AhmedHossam777/Build-a-Full-E-Commerce-RESTful-APIs">
+  <a href="https://github.com/AhmedHossam777/Job-API">
     <img src="https://cdn-icons-png.flaticon.com/512/6213/6213702.png" alt="Logo" width="200" height="200">
   </a>
 
